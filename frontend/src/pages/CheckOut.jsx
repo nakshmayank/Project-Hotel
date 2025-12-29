@@ -22,7 +22,7 @@ function CheckOut() {
     setLoading(true);
     setError("");
     try {
-      await axios.post("/api/visitors/checkout/send-otp", { mobile });
+      await axios.post("/api/stays/checkout/send-otp", { mobile });
       setStep(2);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to send OTP");
@@ -35,7 +35,7 @@ function CheckOut() {
     setLoading(true);
     setError("");
     try {
-      await axios.post("/api/visitors/checkout/verify-otp", {
+      await axios.post("/api/stays/checkout/verify-otp", {
         mobile,
         otp
       });

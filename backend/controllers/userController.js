@@ -5,15 +5,17 @@ import jwt from "jsonwebtoken";
 // Register User : /api/user/register
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, mobile, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !mobile || !password) {
       return res
         .status(400)
         .json({ success: false, message: "Missing Details" });
     }
 
-    const existingUser = await userModel.findOne({ email });
+    const existingUser = await userModel.findOne({
+      $or: [{ email }, { mobile }]
+    });
 
     if (existingUser) {
       return res
@@ -26,12 +28,13 @@ export const register = async (req, res) => {
     const user = await userModel.create({
       name,
       email,
+      mobile,
       password: hashedPassword,
     });
 
     return res.status(201).json({
       success: true,
-      user: { email: user.email, name: user.name },
+      user: { email: user.email, name: user.name, mobile: user.mobile },
       message: "User Registered",
     });
   } catch (error) {
@@ -43,17 +46,22 @@ export const register = async (req, res) => {
 // Login User : /api/user/login
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
 
-    if (!email || !password) {
+    if (!identifier || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email and Password are required",
+        message: "Missing details",
       });
     }
 
     // If Email is not registered
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({
+      $or: [
+        { email: identifier },
+        { mobile: identifier }
+      ]
+    });
 
     if (!user) {
       return res
@@ -61,7 +69,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "User not registered" });
     }
 
-    // If Password doesn.t match
+    // If Password doesn't match
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (user && !isMatch) {
@@ -84,7 +92,7 @@ export const login = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      user: { email: user.email, name: user.name },
+      user: { email: user.email, name: user.name, mobile: user.mobile },
       message: "Login Successful",
     });
   } catch (error) {

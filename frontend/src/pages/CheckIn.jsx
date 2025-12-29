@@ -3,89 +3,81 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
 function CheckIn() {
-  const { axios, user } = useAppContext();
+  const { axios } = useAppContext();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    name: user?.name || "",
-    mobile: "",
-    idType: "",
-    idNumber: "",
-    roomNo: ""
-  });
+  const [visitors, setVisitors] = useState([
+    {
+      firstName: "",
+      lastName: "",
+      mobile: "",
+      idType: "",
+      idNumber: "",
+      roomNo: ""
+    }
+  ]);
+
+  const addVisitor = () => {
+    setVisitors([
+      ...visitors,
+      {
+        firstName: "",
+        lastName: "",
+        mobile: "",
+        idType: "",
+        idNumber: "",
+        roomNo: ""
+      }
+    ]);
+  };
+
+  const updateVisitor = (index, field, value) => {
+    const updated = [...visitors];
+    updated[index][field] = value;
+    setVisitors(updated);
+  };
 
   const handleSubmit = async () => {
-    await axios.post("/api/visitors/checkin", form);
+    const stayRes = await axios.post("/api/stays/start");
+    const stayId = stayRes.data.stayId;
+
+    for (let v of visitors) {
+      await axios.post(`/api/stays/${stayId}/visitors`, v);
+    }
+
     navigate("/dashboard");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r z-10 from-orange-400/50 to-amber-400/30">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
-        <h2 className="text-xl font-bold text-center mb-6">
-          Visitor Check-In
-        </h2>
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h2 className="text-2xl font-bold mb-6">Check-In</h2>
 
-        {/* Name */}
-        <input
-          className="w-full border p-2 rounded mb-3 outline-orange-500"
-          placeholder="Visitor Name"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
-        />
+      {visitors.map((v, i) => (
+        <div key={i} className="bg-white p-4 mb-4 rounded shadow">
+          <div className="grid grid-cols-2 gap-4">
+            <input placeholder="First Name" onChange={(e)=>updateVisitor(i,"firstName",e.target.value)} />
+            <input placeholder="Last Name" onChange={(e)=>updateVisitor(i,"lastName",e.target.value)} />
+            <input placeholder="Mobile" onChange={(e)=>updateVisitor(i,"mobile",e.target.value)} />
+            <input placeholder="Room No" onChange={(e)=>updateVisitor(i,"roomNo",e.target.value)} />
+            <select onChange={(e)=>updateVisitor(i,"idType",e.target.value)}>
+              <option value="">ID Type</option>
+              <option>Aadhaar</option>
+              <option>PAN</option>
+              <option>Passport</option>
+              <option>Driving License</option>
+            </select>
+            <input placeholder="ID Number" onChange={(e)=>updateVisitor(i,"idNumber",e.target.value)} />
+          </div>
+        </div>
+      ))}
 
-        {/* Mobile */}
-        <input
-          className="w-full border p-2 rounded mb-3 outline-orange-500"
-          placeholder="Mobile Number"
-          maxLength={10}
-          onChange={(e) =>
-            setForm({ ...form, mobile: e.target.value })
-          }
-        />
+      <button onClick={addVisitor} className="mr-4 px-4 py-2 bg-blue-500 text-white rounded">
+        + Add Visitor
+      </button>
 
-        {/* ID Type */}
-        <select
-          className="w-full border p-2 rounded mb-3 outline-orange-500"
-          value={form.idType}
-          onChange={(e) =>
-            setForm({ ...form, idType: e.target.value })
-          }
-        >
-          <option value="">Select ID Type</option>
-          <option value="Aadhaar">Aadhaar Card</option>
-          <option value="PAN">PAN Card</option>
-          <option value="Passport">Passport</option>
-          <option value="Driving License">Driving License</option>
-        </select>
-
-        {/* ID Number */}
-        <input
-          className="w-full border p-2 rounded mb-3 outline-orange-500"
-          placeholder="ID Number"
-          onChange={(e) =>
-            setForm({ ...form, idNumber: e.target.value })
-          }
-        />
-
-        {/* Room No */}
-        <input
-          className="w-full border p-2 rounded mb-4 outline-orange-500"
-          placeholder="Room Number"
-          onChange={(e) =>
-            setForm({ ...form, roomNo: e.target.value })
-          }
-        />
-
-        <button
-          onClick={handleSubmit}
-          className="w-full bg-orange-500 hover:bg-orange-700 text-white py-2 rounded-lg"
-        >
-          Submit
-        </button>
-      </div>
+      <button onClick={handleSubmit} className="px-6 py-2 bg-green-600 text-white rounded">
+        Confirm Check-In
+      </button>
     </div>
   );
 }

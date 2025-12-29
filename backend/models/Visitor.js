@@ -1,63 +1,45 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const visitorSchema = new Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  mobile: {
-    type: String,
-    required: true
-  },
-  roomNo: {
-    type: String,
-    required: true
-  },
+const visitorSchema = new mongoose.Schema(
+  {
+    stayId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Stay",
+      required: true
+    },
 
-  idType: {
-    type: String,
-    enum: ["Aadhaar", "PAN", "Passport", "Driving License"],
-    required: true
-  },
+    firstName: {
+      type: String,
+      required: true
+    },
 
-  idNumber: {
-    type: String,
-    required: true
-  },
-  checkInTime: {
-    type: Date,
-    default: Date.now
-  },
-  checkOutTime: {
-    type: Date,
-    default: null
-  },
-  otp: {
-    type: String,
-    default: null
-  },
+    lastName: {
+      type: String,
+      required: true
+    },
 
-  otpExpiresAt: {
-    type: Date,
-    default: null
-  },
+    mobile: {
+      type: String,
+      required: true
+    },
 
-  otpAttempts: {
-    type: Number,
-    default: 0
-  },
+    roomNo: {
+      type: String,
+      required: true
+    },
 
-  otpLastSentAt: {
-    type: Date,
-    default: null
-  }
-},
+    idType: {
+      type: String,
+      enum: ["Aadhaar", "PAN", "Passport", "Driving License"],
+      required: true
+    },
+
+    idNumber: {
+      type: String,
+      required: true
+    }
+  },
   { timestamps: true }
 );
 
-export default model("Visitor", visitorSchema);
+export default mongoose.model("Visitor", visitorSchema);
