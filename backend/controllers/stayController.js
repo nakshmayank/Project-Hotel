@@ -29,9 +29,9 @@ export const startStay = async (req, res) => {
 // Add Visitor to Stay
 export const addVisitor = async (req, res) => {
     const { stayId } = req.params;
-    const { firstName, lastName, mobile, idType, idNumber, roomNo } = req.body;
+    const { firstName, lastName, mobile, email, address, idType, idNumber, roomNo } = req.body;
 
-    if (!firstName || !lastName || !mobile || !idType || !idNumber || !roomNo) {
+    if (!firstName || !lastName || !mobile || !email || !address || !idType || !idNumber || !roomNo) {
         return res.status(400).json({
             success: false,
             message: "Missing visitor details"
@@ -42,7 +42,9 @@ export const addVisitor = async (req, res) => {
         stayId,
         firstName,
         lastName,
+        email,
         mobile,
+        address,
         idType,
         idNumber,
         roomNo
@@ -55,18 +57,36 @@ export const addVisitor = async (req, res) => {
 export const getMyActiveStay = async (req, res) => {
     const userId = req.user;
 
-    const stay = await Stay.findOne({
+    const activeStay = await Stay.findOne({
         userId,
+        status: "ACTIVE"
     }).sort({ createdAt: -1 });
 
-    if (!stay) {
-        return res.json({ stay: null, visitors: [] });
+    const completedStays = await Stay.find({
+        userId,
+        status: "COMPLETED"
+    }).sort({ createdAt: -1 });
+
+    // ✅ Fetch visitors for active stay
+    let activeVisitors = [];
+    if (activeStay) {
+        activeVisitors = await Visitor.find({ stayId: activeStay._id });
     }
 
-    const visitors = await Visitor.find({ stayId: stay._id });
+    // ✅ Fetch visitors for completed stays (KEY CHANGE)
+    const completedStayIds = completedStays.map(s => s._id);
+    const completedVisitors = await Visitor.find({
+        stayId: { $in: completedStayIds }
+    });
 
-    res.json({ stay, visitors });
+    res.json({
+        stay: activeStay,
+        visitors: activeVisitors,
+        completedStays,
+        completedVisitors
+    });
 };
+
 
 export const sendCheckoutOTP = async (req, res) => {
     const userId = req.user;

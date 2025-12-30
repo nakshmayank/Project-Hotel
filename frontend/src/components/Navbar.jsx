@@ -31,7 +31,7 @@ function Navbar() {
   if (authLoading) return null;
 
   return (
-    <nav className="bg-white/60 fixed shadow-3xl transition-all border-b border-gray-100/50 backdrop-blur-sm w-full z-30 px-10 py-5 flex items-center justify-between">
+    <nav className="bg-white/10 fixed shadow-3xl transition-all backdrop-blur-sm w-full z-30 px-10 py-5 flex items-center justify-between">
       {/* Left - Logo */}
       <Link to="/" className="text-2xl font-bold text-orange-600">
         HotelCheck

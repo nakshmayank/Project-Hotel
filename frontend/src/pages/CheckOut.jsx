@@ -70,8 +70,8 @@ function CheckOut() {
   }, [step]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-300/70 to-amber-400/30">
+      <div className="bg-gray-200/40 p-8 rounded-xl shadow-lg w-[25%]">
 
         <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
           Visitor Check-Out
@@ -91,7 +91,7 @@ function CheckOut() {
         {!success && step === 1 && (
           <>
             <input
-              className="w-full border p-3 outline-orange-500 rounded mb-4"
+              className="w-full border-2 p-3 shadow-md rounded-lg placeholder:text-orange-600 focus:placeholder:text-gray-500 focus:border-orange-500 outline-none mb-4"
               placeholder="Registered Mobile Number"
               value={mobile}
               maxLength={10}
@@ -105,7 +105,7 @@ function CheckOut() {
             <button
               onClick={sendOtp}
               disabled={loading || mobile.length !== 10}
-              className="w-full bg-orange-500 hover:bg-orange-700 text-white py-2 rounded-lg disabled:bg-gray-300"
+              className="w-full bg-orange-600/80 hover:bg-orange-700/90 hover:shadow-xl text-white py-2 shadow-lg rounded-lg disabled:bg-gray-300"
             >
               {loading ? "Sending OTP..." : "Send OTP"}
             </button>
@@ -115,12 +115,12 @@ function CheckOut() {
         {/* STEP 2: OTP */}
         {!success && step === 2 && (
           <>
-            <p className="text-sm text-gray-600 mb-2">
+            <p className="text-sm font-medium text-gray-800 mb-2">
               OTP sent to {maskMobile(mobile)}
             </p>
 
             <input
-              className="w-full border p-3 outline-orange-500 rounded mb-3"
+              className="w-full border-2 p-3 rounded-lg placeholder:text-orange-600 focus:placeholder:text-gray-500 focus:border-orange-500 outline-none mb-3"
               placeholder="Enter OTP"
               value={otp}
               maxLength={6}

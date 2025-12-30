@@ -20,6 +20,17 @@ const visitorSchema = new mongoose.Schema(
 
     mobile: {
       type: String,
+      length:10,
+      required: true
+    },
+
+    email: {
+      type: String,
+      required: true
+    },
+
+    address: {
+      type: String,
       required: true
     },
 
