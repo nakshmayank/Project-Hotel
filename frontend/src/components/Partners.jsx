@@ -6,10 +6,10 @@ function Partners() {
       </h2>
 
       <div className="flex justify-center flex-wrap gap-8 text-gray-700 text-lg font-medium">
-        <div className="bg-gray-100 px-8 py-4 rounded-lg">Hotel Royal</div>
-        <div className="bg-gray-100 px-8 py-4 rounded-lg">Grand Palace</div>
-        <div className="bg-gray-100 px-8 py-4 rounded-lg">City Inn</div>
-        <div className="bg-gray-100 px-8 py-4 rounded-lg">Ocean View</div>
+        <div className="bg-gray-100/60 px-8 py-4 rounded-lg shadow-md">Hotel Royal</div>
+        <div className="bg-gray-100/60 px-8 py-4 rounded-lg shadow-md">Grand Palace</div>
+        <div className="bg-gray-100/60 px-8 py-4 rounded-lg shadow-md">City Inn</div>
+        <div className="bg-gray-100/60 px-8 py-4 rounded-lg shadow-md">Ocean View</div>
       </div>
     </section>
   );

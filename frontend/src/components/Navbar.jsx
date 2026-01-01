@@ -31,29 +31,29 @@ function Navbar() {
   if (authLoading) return null;
 
   return (
-    <nav className="bg-white/10 fixed shadow-3xl transition-all backdrop-blur-sm w-full z-30 px-10 py-5 flex items-center justify-between">
+    <nav className="fixed shadow-3xl top-0 transition-all backdrop-blur-sm w-full z-30 px-10 py-5 flex items-center justify-between">
       {/* Left - Logo */}
-      <Link to="/" className="text-2xl font-bold text-orange-600">
-        HotelCheck
+      <Link to="/" className="w-[8%]">
+        <img className="" src="/logo.png" alt="" />
       </Link>
 
       {/* Center - Menu */}
       <div className="items-center gap-10 hidden md:flex">
         <Link
           to="/"
-          className="text-gray-700 hover:text-orange-600 font-medium"
+          className="text-gray-800 text-lg hover:text-orange-600 font-medium"
         >
           Home
         </Link>
         <Link
           to="#services"
-          className="text-gray-700 hover:text-orange-600 font-medium"
+          className="text-gray-800 text-lg hover:text-orange-600 font-medium"
         >
           Services
         </Link>
         <Link
           to="#contact"
-          className="text-gray-700 hover:text-orange-600 font-medium"
+          className="text-gray-800 text-lg hover:text-orange-600 font-medium"
         >
           Contact
         </Link>

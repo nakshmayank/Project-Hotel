@@ -24,19 +24,34 @@ function VisitorDashboard() {
 
   return (
     <>
-      <div className="pt-24 p-6 bg-gradient-to-r from-orange-300/70 to-amber-400/30 min-h-screen">
+      <div className="pt-24 p-6 bg-gradient-to-r from-orange-300/80 to-amber-400/30 min-h-screen">
         <div className="mx-96 relative">
           <div className="justify-center items-center">
-            <h1 className="text-2xl font-bold mb-4">
+            <div className="mb-5">
+              <h1 className="text-2xl font-bold">
               Welcome, {user ? user.name : "Guest"}
             </h1>
+            <h3 className="text-sm">Manage your stay digitally</h3>
+            </div>
 
             {stay ? (
               <div className="bg-gray-200/40 p-5 justify-center items-center rounded-xl">
                 <div className="mb-6">
                   <div className="mb-2">
-                    <p className="font-bold text-xl">Your Stay</p>
+                    <p className="font-bold text-xl text-orange-600">Stay Information</p>
                   </div>
+                  <p>
+                    <b>Full Name:</b>{" "}
+                    {user.name}
+                  </p>
+                  <p>
+                    <b>Email:</b>{" "}
+                    {user.email}
+                  </p>
+                  <p>
+                    <b>Mobile:</b>{" "}
+                    {user.mobile}
+                  </p>
                   <p>
                     <b>Check-In:</b>{" "}
                     {new Date(stay.checkInTime).toLocaleString()}
@@ -100,7 +115,7 @@ function VisitorDashboard() {
               disabled={!hasActiveStay}
               className={`px-5 py-3 rounded-lg font-semibold transition shadow-md ${
                 hasActiveStay
-                  ? "bg-red-500 text-white hover:bg-red-600"
+                  ? "bg-orange-600/90 text-white hover:bg-orange-700"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             >

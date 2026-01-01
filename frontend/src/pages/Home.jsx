@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
       {/* PAGE CONTENT */}
-      <div className={`pt-10 ${showLogin ? "blur-sm" : ""}`}>
+      <div className={`pt-10 bg-gradient-to-r from-orange-300/70 to-amber-400/30 ${showLogin ? "blur-sm" : ""}`}>
         <MainBanner />
         <Services />
         <Partners />

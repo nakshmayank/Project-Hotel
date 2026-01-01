@@ -51,94 +51,112 @@ function CheckIn() {
   };
 
   return (
-    <div className=" flex justify-between min-h-screen py-28 bg-gradient-to-r from-orange-300/70 to-amber-400/30">
+    <div className=" flex justify-between min-h-screen py-28 bg-gradient-to-r from-orange-300/80 to-amber-400/30">
       <div className="p-10 w-[45%] ml-24 rounded-lg">
-        <h2 className="text-2xl text-center font-bold mb-6">Visitor Check-In</h2>
+        <h2 className="text-2xl text-center font-bold mb-6">
+          Visitor Check-In
+        </h2>
 
         {/* 🔹 Visitor Form */}
-        <div className="mb-4 gap-3 grid bg-gray-200/40 p-4 rounded-xl">
-          <div className="grid grid-cols-2 gap-4">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addVisitor();
+          }}
+        >
+          <div className="mb-4 gap-3 grid bg-gray-200/40 p-4 rounded-xl">
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg  focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+                placeholder="First Name"
+                value={visitorForm.firstName}
+                onChange={(e) => handleChange("firstName", e.target.value)}
+                required
+              />
+              <input
+                className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+                placeholder="Last Name"
+                value={visitorForm.lastName}
+                onChange={(e) => handleChange("lastName", e.target.value)}
+                required
+              />
+            </div>
+
             <input
-              className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg  focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-              placeholder="First Name"
-              value={visitorForm.firstName}
-              onChange={(e) => handleChange("firstName", e.target.value)}
+              className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+              placeholder="Email"
+              value={visitorForm.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              required
             />
             <input
-              className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-              placeholder="Last Name"
-              value={visitorForm.lastName}
-              onChange={(e) => handleChange("lastName", e.target.value)}
+              className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+              placeholder="Mobile"
+              value={visitorForm.mobile}
+              maxLength={10}
+              onChange={(e) => handleChange("mobile", e.target.value)}
+              required
             />
+            <input
+              className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+              placeholder="Address"
+              value={visitorForm.address}
+              onChange={(e) => handleChange("address", e.target.value)}
+              required
+            />
+            <input
+              className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+              placeholder="Room No"
+              value={visitorForm.roomNo}
+              onChange={(e) => handleChange("roomNo", e.target.value)}
+              required
+            />
+            <div className="flex grid-cols-2 gap-4">
+              <select
+                className="w-[37%] p-2 rounded-lg border-2 shadow-md bg-gray-100/70 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+                value={visitorForm.idType}
+                onChange={(e) => handleChange("idType", e.target.value)}
+                required
+              >
+                <option value="">ID Type</option>
+                <option>Aadhaar</option>
+                <option>PAN</option>
+                <option>Passport</option>
+                <option>Driving License</option>
+              </select>
+              <input
+                className="p-2 w-full rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+                placeholder="ID Number"
+                value={visitorForm.idNumber}
+                onChange={(e) => handleChange("idNumber", e.target.value)}
+                required
+              />
+            </div>
           </div>
 
-          <input
-            className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-            placeholder="Email"
-            value={visitorForm.email}
-            onChange={(e) => handleChange("email", e.target.value)}
-          />
-          <input
-            className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-            placeholder="Mobile"
-            value={visitorForm.mobile}
-            maxLength={10}
-            onChange={(e) => handleChange("mobile", e.target.value)}
-          />
-          <input
-            className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-            placeholder="Address"
-            value={visitorForm.address}
-            onChange={(e) => handleChange("address", e.target.value)}
-          />
-          <input
-            className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-            placeholder="Room No"
-            value={visitorForm.roomNo}
-            onChange={(e) => handleChange("roomNo", e.target.value)}
-          />
-          <div className="flex grid-cols-2 gap-4">
-            <select
-              className="w-[35%] p-2 rounded-lg border-2 shadow-md bg-gray-100/70 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-              value={visitorForm.idType}
-              onChange={(e) => handleChange("idType", e.target.value)}
+          {/* 🔹 Buttons */}
+          <div className="flex justify-end gap-4 mb-6">
+            <button
+              type="submit"
+              className="px-5 py-3 bg-purple-900/80 shadow-md text-white rounded-lg hover:bg-purple-900/90 hover:shadow-lg"
             >
-              <option value="">ID Type</option>
-              <option>Aadhaar</option>
-              <option>PAN</option>
-              <option>Passport</option>
-              <option>Driving License</option>
-            </select>
-            <input
-              className="p-2 w-full rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600 focus:shadow-lg focus:placeholder:text-gray-500 focus:border-orange-500 outline-none"
-              placeholder="ID Number"
-              value={visitorForm.idNumber}
-              onChange={(e) => handleChange("idNumber", e.target.value)}
-            />
+              Add Visitor
+            </button>
+
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={visitors.length === 0}
+              className={`px-5 py-3 font-semibold rounded-lg shadow ${
+                visitors.length === 0
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-orange-600/80 text-white shadow-md hover:bg-orange-700/90 hover:shadow-lg"
+              }`}
+            >
+              Confirm Check-In
+            </button>
           </div>
-        </div>
-
-        {/* 🔹 Buttons */}
-        <div className="flex justify-end gap-4 mb-6">
-          <button
-            onClick={addVisitor}
-            className="px-5 py-3 bg-purple-900/80 shadow-md text-white rounded-lg hover:bg-purple-900/90 hover:shadow-lg"
-          >
-            Add Visitor
-          </button>
-
-          <button
-            onClick={handleSubmit}
-            disabled={visitors.length === 0}
-            className={`px-5 py-3 font-semibold rounded-lg shadow ${
-              visitors.length === 0
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-orange-600/80 text-white shadow-md hover:bg-orange-700/90 hover:shadow-lg"
-            }`}
-          >
-            Confirm Check-In
-          </button>
-        </div>
+        </form>
 
         {/* 🔹 Added Visitors List */}
         {visitors.length > 0 && (

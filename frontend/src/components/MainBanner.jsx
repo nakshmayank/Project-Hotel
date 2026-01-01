@@ -1,6 +1,11 @@
+import { useAppContext } from "../context/AppContext";
+
 function MainBanner() {
+
+  const { setState, setShowLogin} = useAppContext();
+
   return (
-    <section className="relative m-20 bg-gradient-to-r from-orange-300/70 to-amber-400/30 rounded-xl transition-shadow shadow-xl">
+    <section className="relative m-20 bg-gradient-to-l from-purple-400/30 to-orange-300/30 rounded-xl transition-shadow shadow-xl">
       <div className="max-w-7xl mx-auto px-6 h-[60vh] flex items-center">
         
         {/* Left: Text Content */}
@@ -14,7 +19,7 @@ function MainBanner() {
             visitor management solution for modern hotels.
           </p>
 
-          <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+          <button onClick={()=>{setState("register"); setShowLogin(true)}} className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold shadow-xl hover:bg-orange-700/90 transition">
             Get Started
           </button>
         </div>
