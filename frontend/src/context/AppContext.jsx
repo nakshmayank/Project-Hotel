@@ -29,6 +29,16 @@ export const AppContextProvider = ({ children }) => {
   }
 };
 
+const logout = async () => {
+  try {
+    await axios.post("/api/user/logout");
+  } finally {
+    setUser(null);
+    navigate("/");
+  }
+};
+
+
 useEffect(() => {
   fetchUser();
 }, []);
@@ -43,6 +53,7 @@ useEffect(() => {
     navigate,
     user,
     authLoading,
+    logout
   };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;

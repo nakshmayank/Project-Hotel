@@ -22,6 +22,8 @@ function VisitorDashboard() {
 
   const hasActiveStay = stay?.status === "ACTIVE";
 
+  if (!user) return null;
+
   return (
     <>
       <div className="pt-24 p-6 bg-gradient-to-r from-orange-300/80 to-amber-400/30 min-h-screen">
@@ -29,70 +31,83 @@ function VisitorDashboard() {
           <div className="justify-center items-center">
             <div className="mb-5">
               <h1 className="text-2xl font-bold">
-              Welcome, {user ? user.name : "Guest"}
-            </h1>
-            <h3 className="text-sm">Manage your stay digitally</h3>
+                Welcome, {user ? user.name : "Guest"}
+              </h1>
+              <h3 className="text-sm">Manage your stay digitally</h3>
             </div>
 
-            {stay ? (
-              <div className="bg-gray-200/40 p-5 justify-center items-center rounded-xl">
-                <div className="mb-6">
-                  <div className="mb-2">
-                    <p className="font-bold text-xl text-orange-600">Stay Information</p>
-                  </div>
-                  <p>
-                    <b>Full Name:</b>{" "}
-                    {user.name}
-                  </p>
-                  <p>
-                    <b>Email:</b>{" "}
-                    {user.email}
-                  </p>
-                  <p>
-                    <b>Mobile:</b>{" "}
-                    {user.mobile}
-                  </p>
-                  <p>
-                    <b>Check-In:</b>{" "}
-                    {new Date(stay.checkInTime).toLocaleString()}
-                  </p>
-                  <p>
-                    <b>Check-Out:</b>{" "}
-                    {new Date(stay.checkInTime).toLocaleString()}
-                  </p>
-                  <p>
-                    <b>Status:</b> {stay.status}
-                  </p>
-                </div>
+            <div className="bg-gray-200/40 p-5 shadow justify-center items-center rounded-xl">
+              <div className="mb-5">
+                <p>
+                  <b>Full Name:</b> {user.name}
+                </p>
+                <p>
+                  <b>Email:</b> {user.email}
+                </p>
+                <p>
+                  <b>Mobile:</b> {user.mobile}
+                </p>
+              </div>
 
-                <div className="flex gap-5">
-                  {visitors.map((v, i) => (
-                    <div
-                      key={i}
-                      className="bg-gray-100/70 p-4 mb-3 rounded-xl shadow-md"
-                    >
-                      <p>
-                        <b>Name:</b> {v.firstName} {v.lastName}
-                      </p>
-                      <p>
-                        <b>Room:</b> {v.roomNo}
-                      </p>
-                      <p>
-                        <b>Mobile:</b> {v.mobile}
+              {/* Active Stay */}
+              {stay ? (
+                <div>
+                  <div className="mb-2">
+                    <div className="mb-1">
+                      <p className="font-bold text-xl text-orange-600 underline">
+                        Active Stay
                       </p>
                     </div>
-                  ))}
+                    <p>
+                      <b>Check-In:</b>{" "}
+                      {new Date(stay.checkInTime).toLocaleString()}
+                    </p>
+                    <p>
+                      <b>Check-Out:</b>{" "}
+                      {stay.status === "COMPLETED" && stay.checkOutTime
+                        ? new Date(stay.checkOutTime).toLocaleString()
+                        : "not checked out yet"}
+                    </p>
+
+                    <p>
+                      <b>Status:</b> {stay.status}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-medium mb-2">Visitors:</p>
+                    <div className="flex gap-5">
+                    {visitors.map((v, i) => (
+                      <div
+                        key={i}
+                        className="bg-gray-100/70 p-4 mb-3 rounded-xl shadow-md"
+                      >
+                        <p>
+                          <b>Name:</b> {v.firstName} {v.lastName}
+                        </p>
+                        <p>
+                          <b>Room:</b> {v.roomNo}
+                        </p>
+                        <p>
+                          <b>Mobile:</b> {v.mobile}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  </div>
+                  
                 </div>
-              </div>
-            ) : (
-              <div className="bg-gray-200/40 p-5 shadow justify-center items-center rounded-xl">
-                <div className="mb-6">
-                  <p className="italic text-gray-900">
-                    🌸 No active stay right now — ready for your next visit? 🌿
-                  </p>
+              ) : (
+                <div>
+                  <div className="mb-5">
+                    <p className="flex justify-center italic text-gray-900">
+                      🌸 No active stay right now — ready for your next visit?
+                      🌿
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
           <div className="flex gap-4 mt-6 justify-end">

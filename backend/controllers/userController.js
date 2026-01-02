@@ -128,6 +128,7 @@ export const logout = async (req, res) => {
       httpOnly: true, //Prevent JavaScript to access cookie
       secure: process.env.NODE_ENV === "production", //Use secure cookie in Production
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict", //CSRF Protection
+      expires: new Date(0),
     });
 
     return res.status(200).json({ success: true, message: "Logged Out" });

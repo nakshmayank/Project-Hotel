@@ -3,7 +3,7 @@ import { useAppContext } from "../context/AppContext";
 import { useEffect, useRef, useState } from "react";
 
 function Navbar() {
-  const { setState, setShowLogin, user, setUser, navigate, authLoading } =
+  const { setState, setShowLogin, user, setUser, navigate, authLoading, logout } =
     useAppContext();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const profileMenuRef = useRef(null);
@@ -84,8 +84,7 @@ function Navbar() {
               </li>
               <li
                 onClick={() => {
-                  setUser(null);
-                  navigate("/");
+                  logout();
                   setShowProfileMenu(!showProfileMenu);
                 }}
                 className="flex p-1.5 pl-3 gap-2 hover:bg-orange-500/10 cursor-pointer font-medium"
@@ -103,7 +102,7 @@ function Navbar() {
               setState("login");
               setShowLogin(true);
             }}
-            className="px-4 py-2 text-orange-600 border border-orange-600 rounded hover:bg-orange-50"
+            className="px-4 py-1.5 text-orange-600 border shadow-md border-orange-600 rounded-md hover:bg-orange-50/60 hover:shadow-lg"
           >
             Login
           </button>
@@ -113,7 +112,7 @@ function Navbar() {
               setState("register");
               setShowLogin(true);
             }}
-            className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-700"
+            className="px-4 py-2 bg-orange-500 text-white shadow-md rounded-md hover:bg-orange-700 hover-shadow-lg"
           >
             Register
           </button>

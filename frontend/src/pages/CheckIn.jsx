@@ -67,6 +67,7 @@ function CheckIn() {
           <div className="mb-4 gap-3 grid bg-gray-200/40 p-4 rounded-xl">
             <div className="grid grid-cols-2 gap-4">
               <input
+                name="firstName"
                 className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg  focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
                 placeholder="First Name"
                 value={visitorForm.firstName}
@@ -74,6 +75,7 @@ function CheckIn() {
                 required
               />
               <input
+                name="lastName"
                 className="p-2 rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
                 placeholder="Last Name"
                 value={visitorForm.lastName}
@@ -83,37 +85,44 @@ function CheckIn() {
             </div>
 
             <input
+              name="email"
+              autoComplete="email"
               className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
-              placeholder="Email"
+              placeholder="Email Address"
               value={visitorForm.email}
               onChange={(e) => handleChange("email", e.target.value)}
               required
             />
             <input
+              name="mobile"
               className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
-              placeholder="Mobile"
+              placeholder="Mobile Number"
               value={visitorForm.mobile}
               maxLength={10}
               onChange={(e) => handleChange("mobile", e.target.value)}
               required
             />
             <input
+              name="address"
+              autoComplete="address"
               className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
-              placeholder="Address"
+              placeholder="Full Address"
               value={visitorForm.address}
               onChange={(e) => handleChange("address", e.target.value)}
               required
             />
             <input
+              name="roomNo"
               className="p-2 rounded-lg w-full border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
-              placeholder="Room No"
+              placeholder="Room Number"
               value={visitorForm.roomNo}
               onChange={(e) => handleChange("roomNo", e.target.value)}
               required
             />
             <div className="flex grid-cols-2 gap-4">
               <select
-                className="w-[37%] p-2 rounded-lg border-2 shadow-md bg-gray-100/70 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
+                name="idType"
+                className="w-[37%] p-2 rounded-lg border-2 shadow-md bg-gray-100/70 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none cursor-pointer"
                 value={visitorForm.idType}
                 onChange={(e) => handleChange("idType", e.target.value)}
                 required
@@ -125,6 +134,7 @@ function CheckIn() {
                 <option>Driving License</option>
               </select>
               <input
+                name="idNo"
                 className="p-2 w-full rounded-lg border-2 shadow-md bg-gray-100/70 placeholder:text-orange-600/90 focus:shadow-lg focus:placeholder:text-gray-500/90 focus:border-orange-500/90 outline-none"
                 placeholder="ID Number"
                 value={visitorForm.idNumber}
@@ -187,7 +197,7 @@ function CheckIn() {
 
       {/* Side banner */}
       <div className="w-[45%] mr-24 flex items-center justify-center">
-        <img className="max-w-xl" src="/checkin_banner2.png" alt="" />
+        <img className="max-w-xl" src="/checkin_banner.png" alt="" />
       </div>
     </div>
   );

@@ -90,11 +90,19 @@ export const getMyActiveStay = async (req, res) => {
 
 export const sendCheckoutOTP = async (req, res) => {
     const userId = req.user;
+    const { mobile } = req.body;
 
     const user = await userModel.findById(userId);
+
     if (!user || !user.mobile) {
         return res.status(400).json({
             message: "Registered mobile number not found"
+        });
+    }
+
+    if (mobile !== user.mobile) {
+        return res.status(403).json({
+            message: "Enter registered mobile number"
         });
     }
 
@@ -137,7 +145,15 @@ export const sendCheckoutOTP = async (req, res) => {
 
 export const verifyCheckoutOTP = async (req, res) => {
     const userId = req.user;
-    const { otp } = req.body;
+    const { otp, mobile } = req.body;
+
+    const user = await userModel.findById(userId);
+
+    if (mobile !== user.mobile) {
+        return res.status(400).json({
+            message: "Mobile number mismatch"
+        });
+    }
 
     const stay = await Stay.findOne({
         userId,

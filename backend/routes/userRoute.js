@@ -12,6 +12,6 @@ const userRouter = express.Router();
 userRouter.post("/register", register);
 userRouter.post("/login", login);
 userRouter.get("/is-auth", authUser, isAuth); //authUser middleware to verify user
-userRouter.get("/logout", authUser, logout); //authUser middleware to verify user to process logout
+userRouter.post("/logout", authUser, logout); //authUser middleware to verify user to process logout
 
 export default userRouter;

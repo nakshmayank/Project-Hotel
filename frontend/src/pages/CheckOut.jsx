@@ -72,7 +72,7 @@ function CheckOut() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-300/70 to-amber-400/30">
       <div className="flex justify-center items-center gap-40">
         <div className="w-[38%]">
-          <img className="" src="/checkout_banner2.png" alt="checkout_banner" />
+          <img className="" src="/checkout_banner.png" alt="checkout_banner" />
         </div>
         <div className="bg-gray-200/40 p-8 rounded-xl max-h-fit shadow-lg w-[23%]">
           <h2 className="text-xl font-bold text-center mb-6 text-gray-800">

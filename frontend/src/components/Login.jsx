@@ -51,7 +51,7 @@ function Login() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg w-96 relative">
+    <div className="bg-orange-100/40 p-8 rounded-xl shadow-lg w-96 relative">
       <form onSubmit={submitHandler}>
         <button
           onClick={() => setShowLogin(false)}
@@ -71,22 +71,26 @@ function Login() {
           <>
             <div className="w-full">
               <input
+              name="name"
+              autoComplete="name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 placeholder="Name"
-                className="w-full border p-3 rounded mb-4 outline-orange-500/70"
+                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
                 type="text"
                 required
               />
             </div>
 
             {/* Email */}
-            <div className="w-full ">
+            <div className="w-full">
               <input
+              name="email"
+              autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="Email"
-                className="w-full border p-3 rounded mb-4 outline-orange-500/70"
+                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
                 type="email"
                 required
               />
@@ -95,12 +99,14 @@ function Login() {
             {/* Mobile */}
             <div className="w-full ">
               <input
+              name="tel"
+              autoComplete="tel"
                 onChange={(e) => setMobile(e.target.value)}
                 value={mobile}
                 placeholder="Mobile Number"
                 maxLength={10}
-                className="w-full border p-3 rounded mb-4 outline-orange-500/70"
-                type="number"
+                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+                type="tel"
                 required
               />
             </div>
@@ -110,21 +116,26 @@ function Login() {
         {/* Email or Mobile Number */}
         {state === "login" && (
           <input
+          name="username"
+  autoComplete="username"
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
             placeholder="Email/Mobile Number"
-            className="w-full border p-3 rounded mb-4 outline-orange-500/70"
+            className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
             required
           />
         )}
 
         {/* Password */}
-        <div className="w-full ">
+        <div className="w-full">
           <input
+          name="password"
+          autoComplete="password"
+
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Password"
-            className="w-full border p-3 rounded mb-4 outline-orange-500/70"
+            className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
             type="password"
             required
           />
@@ -134,17 +145,19 @@ function Login() {
         {state === "register" && (
           <div className="w-full">
             <input
+            name="confirmPassword"
+            autoComplete="confirmPassword"
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}
               placeholder="Confirm Password"
-              className="w-full border p-3 rounded mb-4 outline-orange-500/70"
-              type="text"
+              className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+              type="password"
               required
             />
           </div>
         )}
 
-        <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold">
+        <button className="w-full bg-orange-500 shadow-md hover:bg-orange-600 hover:shadow-lg text-white py-3 rounded-lg font-semibold">
           {state === "register" ? "Create Account" : "Login"}
         </button>
 
