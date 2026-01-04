@@ -1,4 +1,4 @@
-function BottomBanner() {
+const BottomBanner = () => {
   return (
     <section className="bg-gray-200/20 py-16 text-center">
       <h2 className="text-3xl font-bold mb-4">

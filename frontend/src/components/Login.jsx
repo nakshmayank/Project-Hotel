@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppContext } from "../context/AppContext";
 
-function Login() {
+const Login = () => {
   const { state, setState, setShowLogin, axios, setUser, navigate } =
     useAppContext();
   const [name, setName] = useState("");
@@ -32,7 +32,7 @@ function Login() {
         identifier,
         password,
       });
-      
+
       if (data.success) {
         if (state === "login") {
           setUser(data.user);
@@ -51,8 +51,8 @@ function Login() {
   };
 
   return (
-    <div className="bg-orange-100/40 p-8 rounded-xl shadow-lg w-96 relative">
-      <form onSubmit={submitHandler}>
+    <div className="bg-orange-100/40 p-4 sm:p-5 md:p-6 rounded-xl shadow-lg w-[85vw] max-w-sm relative">
+      <form onSubmit={submitHandler} className="p-5">
         <button
           onClick={() => setShowLogin(false)}
           className="absolute top-3 right-4 text-xl font-bold text-gray-600 hover:text-black"
@@ -71,12 +71,12 @@ function Login() {
           <>
             <div className="w-full">
               <input
-              name="name"
-              autoComplete="name"
+                name="name"
+                autoComplete="name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 placeholder="Name"
-                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+                className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
                 type="text"
                 required
               />
@@ -85,12 +85,12 @@ function Login() {
             {/* Email */}
             <div className="w-full">
               <input
-              name="email"
-              autoComplete="email"
+                name="email"
+                autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="Email"
-                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+                className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
                 type="email"
                 required
               />
@@ -99,13 +99,13 @@ function Login() {
             {/* Mobile */}
             <div className="w-full ">
               <input
-              name="tel"
-              autoComplete="tel"
+                name="tel"
+                autoComplete="tel"
                 onChange={(e) => setMobile(e.target.value)}
                 value={mobile}
                 placeholder="Mobile Number"
                 maxLength={10}
-                className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+                className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
                 type="tel"
                 required
               />
@@ -116,12 +116,12 @@ function Login() {
         {/* Email or Mobile Number */}
         {state === "login" && (
           <input
-          name="username"
-  autoComplete="username"
+            name="username"
+            autoComplete="username"
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
             placeholder="Email/Mobile Number"
-            className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+            className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
             required
           />
         )}
@@ -129,13 +129,12 @@ function Login() {
         {/* Password */}
         <div className="w-full">
           <input
-          name="password"
-          autoComplete="password"
-
+            name="password"
+            autoComplete="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Password"
-            className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+            className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
             type="password"
             required
           />
@@ -145,12 +144,12 @@ function Login() {
         {state === "register" && (
           <div className="w-full">
             <input
-            name="confirmPassword"
-            autoComplete="confirmPassword"
+              name="confirmPassword"
+              autoComplete="confirmPassword"
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}
               placeholder="Confirm Password"
-              className="w-full border-2 shadow-md p-2.5 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
+              className="w-full border-2 shadow-md p-2 rounded-lg mb-4 outline-none placeholder:text-orange-600 focus:placeholder:text-gray-400 focus:shadow-lg focus:border-orange-500"
               type="password"
               required
             />
@@ -185,6 +184,6 @@ function Login() {
       </form>
     </div>
   );
-}
+};
 
 export default Login;

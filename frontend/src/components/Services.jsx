@@ -1,4 +1,4 @@
-function Services() {
+const Services = () => {
   return (
     <section id="services" className="relative py-20 bg-gray-200/20">
       <h2 className="text-3xl font-bold text-center mb-12">

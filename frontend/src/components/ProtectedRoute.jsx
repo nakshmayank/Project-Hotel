@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
-function ProtectedRoute({ children }) {
+const ProtectedRoute = ({ children }) => {
   const { user, authLoading } = useAppContext();
 
-  if (authLoading) return null; // loader already handled in App.jsx
+  if (authLoading) return null;
 
   if (!user) {
     return <Navigate to="/" replace />;

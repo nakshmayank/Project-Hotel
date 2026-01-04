@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 
-function VisitorDashboard() {
+const VisitorDashboard = () => {
   const { axios, navigate, user } = useAppContext();
   const [stay, setStay] = useState(null);
   const [visitors, setVisitors] = useState([]);
@@ -27,10 +27,10 @@ function VisitorDashboard() {
   return (
     <>
       <div className="pt-24 p-6 bg-gradient-to-r from-orange-300/80 to-amber-400/30 min-h-screen">
-        <div className="mx-96 relative">
+        <div className="max-w-2xl mx-auto relative px-2 sm:px-4">
           <div className="justify-center items-center">
             <div className="mb-5">
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-xl sm:text-2xl font-bold">
                 Welcome, {user ? user.name : "Guest"}
               </h1>
               <h3 className="text-sm">Manage your stay digitally</h3>
@@ -76,7 +76,7 @@ function VisitorDashboard() {
 
                   <div>
                     <p className="font-medium mb-2">Visitors:</p>
-                    <div className="flex gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {visitors.map((v, i) => (
                       <div
                         key={i}
@@ -146,7 +146,7 @@ function VisitorDashboard() {
                 {completedStays.map((s) => (
                   <div
                     key={s._id}
-                    className="bg-gray-200/40 p-4 mb-4 rounded-xl shadow"
+                    className="bg-gray-200/40 p-5 mb-4 rounded-xl shadow"
                   >
                     <p>
                       <b>Check-In:</b>{" "}

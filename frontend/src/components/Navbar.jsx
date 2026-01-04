@@ -2,15 +2,14 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { useEffect, useRef, useState } from "react";
 
-function Navbar() {
-  const { setState, setShowLogin, user, setUser, navigate, authLoading, logout } =
+const Navbar = () => {
+  const { setState, setShowLogin, user, navigate, authLoading, logout } =
     useAppContext();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const profileMenuRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // If the menu is open and the click is outside the menu's container
       if (
         profileMenuRef.current &&
         !profileMenuRef.current.contains(event.target)
@@ -19,10 +18,8 @@ function Navbar() {
       }
     };
 
-    // Add the event listener when the component mounts
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -33,8 +30,8 @@ function Navbar() {
   return (
     <nav className="fixed shadow-3xl top-0 transition-all backdrop-blur-sm w-full z-30 px-10 py-5 flex items-center justify-between">
       {/* Left - Logo */}
-      <Link to="/" className="w-[8%]">
-        <img className="" src="/logo.png" alt="" />
+      <Link to="/" className="flex items-center">
+        <img className="max-w-24" src="/logo.png" alt="" />
       </Link>
 
       {/* Center - Menu */}
@@ -79,7 +76,11 @@ function Navbar() {
                 }}
                 className="flex p-1.5 pl-3 gap-2 items-center hover:bg-orange-500/10 cursor-pointer font-medium"
               >
-                <img className="w-4 opacity-80" src="/dashboard.png" alt="dashboard_icon" />
+                <img
+                  className="w-4 opacity-80"
+                  src="/dashboard.png"
+                  alt="dashboard_icon"
+                />
                 <p>Dashboard</p>
               </li>
               <li
@@ -120,6 +121,6 @@ function Navbar() {
       )}
     </nav>
   );
-}
+};
 
 export default Navbar;

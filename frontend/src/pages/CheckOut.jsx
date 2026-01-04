@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
-function CheckOut() {
+const CheckOut = () => {
   const { axios } = useAppContext();
   const navigate = useNavigate();
 
@@ -69,17 +69,27 @@ function CheckOut() {
   }, [step]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-300/70 to-amber-400/30">
-      <div className="flex justify-center items-center gap-40">
-        <div className="w-[38%]">
-          <img className="" src="/checkout_banner.png" alt="checkout_banner" />
+    <div className="min-h-screen bg-gradient-to-r from-orange-300/70 to-amber-400/30 pt-20">
+      <div className="p-10 flex flex-col xl:flex-row justify-center items-center gap-12 xl:gap-32">
+
+        {/* Checkout Banner */}
+        <div className="flex items-center justify-center">
+          <div className="">
+            <img
+              className="w-[40vh] xl:w-[70vh] p-2"
+              src="/checkout_banner.png"
+              alt="checkout_banner"
+            />
+          </div>
         </div>
-        <div className="bg-gray-200/40 p-8 rounded-xl max-h-fit shadow-lg w-[23%]">
+
+        {/* Checkout Form */}
+        <div className="bg-gray-200/40 p-8 xl:w-[40vh] rounded-xl shadow-lg">
           <h2 className="text-xl font-bold text-center mb-6 text-gray-800">
             Visitor Check-Out
           </h2>
 
-          {/* SUCCESS */}
+          {/* Success */}
           {success && (
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-4"></div>
@@ -89,7 +99,7 @@ function CheckOut() {
             </div>
           )}
 
-          {/* STEP 1: MOBILE */}
+          {/* Step 1: Mobile */}
           {!success && step === 1 && (
             <div className="flex flex-col items-center">
               <input
@@ -112,7 +122,7 @@ function CheckOut() {
             </div>
           )}
 
-          {/* STEP 2: OTP */}
+          {/* Step 2: OTP */}
           {!success && step === 2 && (
             <>
               <p className="text-sm font-medium text-gray-800 mb-2">

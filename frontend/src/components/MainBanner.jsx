@@ -1,20 +1,21 @@
 import { useAppContext } from "../context/AppContext";
 
-function MainBanner() {
+const MainBanner = () => {
 
   const { setState, setShowLogin} = useAppContext();
 
   return (
-    <section className="relative m-20 bg-gradient-to-l from-purple-400/30 to-orange-300/30 rounded-xl transition-shadow shadow-xl">
-      <div className="max-w-7xl mx-auto px-6 h-[60vh] flex items-center">
+    <section className="relative mx-5 my-14 md:m-20 bg-gradient-to-b md:bg-gradient-to-l
+ from-purple-400/30 to-orange-300/30 rounded-xl transition-shadow shadow-xl">
+      <div className="max-w-7xl mx-auto p-6 flex flex-col-reverse md:flex-row items-center">
         
         {/* Left: Text Content */}
-        <div className="w-full md:w-1/2 text-left">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-800 leading-tight">
             Digital Hotel Check-In & Check-Out System
           </h1>
 
-          <p className="text-lg mb-6 text-gray-700">
+          <p className="text-lg mb-6 text-gray-700 md:max-w-none max-w-xl mx-auto">
             Replace handwritten registers with a fast, secure and digital
             visitor management solution for modern hotels.
           </p>
@@ -25,7 +26,7 @@ function MainBanner() {
         </div>
 
         {/* Right: Banner Image */}
-        <div className="hidden md:flex w-1/2 justify-end">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-6 md:mb-0">
           <img
             src="/hero-banner.png"
             alt="Hotel Check-In Illustration"

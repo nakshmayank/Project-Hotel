@@ -9,7 +9,7 @@ import Loader from "./components/Loader";
 import { useAppContext } from "./context/AppContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+const App = () => {
 
   const { authLoading } = useAppContext();
 

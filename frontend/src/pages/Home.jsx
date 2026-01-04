@@ -5,12 +5,11 @@ import BottomBanner from "../components/BottomBanner";
 import { useAppContext } from "../context/AppContext";
 import Login from "../components/Login";
 
-function Home() {
+const Home = () => {
   const { showLogin, setShowLogin } = useAppContext();
 
   return (
     <>
-      {/* PAGE CONTENT */}
       <div className={`pt-10 bg-gradient-to-r from-orange-300/70 to-amber-400/30 ${showLogin ? "blur-sm" : ""}`}>
         <MainBanner />
         <Services />
@@ -18,10 +17,9 @@ function Home() {
         <BottomBanner />
       </div>
 
-      {/* AUTH OVERLAY */}
       {showLogin && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-4"
           onClick={()=>setShowLogin(false)}
         >
           <div onClick={(e) => e.stopPropagation()}>

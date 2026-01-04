@@ -1,4 +1,4 @@
-function Loader() {
+const Loader = () => {
   return (
     <div className="h-screen flex items-center justify-center opacity-0 animate-fadeIn">
       <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
